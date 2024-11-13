@@ -1,0 +1,411 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #3e2723; /* 背景色 */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.order-system {
+    max-width: 1400px; /* 全体の幅を1400pxに固定 */
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; /* アレルギー検索ボタンの配置に必要 */
+}
+
+header h1 {
+    text-align: center;
+    color: #ffe0b2;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
+    font-weight: bold; /* 文字を太く */
+}
+
+.menu-nav {
+    display: flex;
+    justify-content: space-between; /* ボタンを横に並べる */
+    margin-bottom: 20px; /* メニュー欄との間にスペースを追加 */
+}
+
+/* 選択されているメニュージャンルボタンのスタイル */
+.menu-nav button.selected {
+    background-color: #4A90E2; /* モダンなブルー */
+    color: #ffffff; /* 白いテキスト */
+    border: none; /* 枠線をなくす */
+    pointer-events: none; /* クリックを無効にしてホバーを無効にする */
+}
+
+/* 非選択状態のボタンのスタイル */
+.menu-nav button {
+    background-color: #d35400; /* 通常のオレンジ色 */
+    color: #f5f5f5; /* 自然な色合い */
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1;
+    margin: 5px;
+}
+
+.menu-nav button:hover:not(.selected) {
+    background-color: #e67e22; /* ホバー時の色（選択されていない場合のみ） */
+}
+
+
+
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.menu-section {
+    flex: 3;
+    display: flex; /* フレックスボックスを使用 */
+    flex-wrap: wrap; /* 項目を複数行に折り返し */
+    gap: 20px; /* 項目間のスペース */
+    margin-top: 20px; /* 上のボタンとメニュー欄の間にスペースを追加 */
+    margin-bottom: 30px; /* メニュー欄と下のボタンの間にスペースを追加 */
+}
+
+#menuList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* メニュー項目を横並びにし、折り返す */
+    gap: 20px;
+}
+
+#menuList li {
+    background-color: #4e342e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden; /* 枠に写真を収める */
+    flex: 1 1 calc(25% - 20px); /* 項目の幅を25%にし、スペースを確保 */
+    max-width: calc(25% - 20px); /* 最大幅を25%にする */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* アレルギーアイコンの配置に必要 */
+}
+
+#menuList li img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 画像を枠いっぱいに表示 */
+    border-bottom: 1px solid #ffccbc;
+}
+
+.menu-item-info {
+    color: #ffccbc;
+    padding: 10px;
+    font-weight: bold; /* 文字を太く */
+    font-size: 14px; /* メニュー名と値段の文字サイズを調整 */
+    margin-bottom: 0; /* 不自然なスペースをなくす */
+}
+
+.cart {
+    flex: 1;
+    padding: 20px;
+    background-color: #5d4037;
+    border-radius: 10px;
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 上下に配置 */
+    min-width: 300px; /* カートの最小幅を設定 */
+}
+
+.cart h2 {
+    color: #ffe0b2;
+    font-weight: bold; /* 文字を太く */
+}
+
+#cartList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    color: #ffccbc;
+    flex-grow: 1; /* カートリストが成長する余地を確保 */
+    overflow-y: auto; /* スクロール可能にする */
+    display: grid;
+    grid-template-rows: repeat(5, 1fr); /* 5つの固定スペース */
+    gap: 10px;
+}
+
+#cartList li {
+    background-color: #6a4f4b; /* 空のスペースは薄めの色 */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-footer {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #ffccbc;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #ffccbc;
+    font-weight: bold; /* 文字を太く */
+}
+
+.cart button {
+    background-color: #ff7043;
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold; /* 文字を太く */
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cart button:hover {
+    background-color: #ff5722;
+}
+
+.additional-buttons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #3e2723; /* 背景色を画面全体と統一 */
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 10; /* 他の要素の上に表示するために z-index を設定 */
+}
+
+/* 1つ目のボタンの色 */
+.additional-buttons button:nth-child(1) {
+    background-color: #FF6F61; /* 鮮やかなコーラル */
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30%;
+}
+
+.additional-buttons button:nth-child(1):hover {
+    background-color: #E65C53; /* 少し濃いコーラル */
+}
+
+/* 2つ目のボタンの色 */
+.additional-buttons button:nth-child(2) {
+    background-color: #42A5F5; /* 鮮やかなスカイブルー */
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30%;
+}
+
+.additional-buttons button:nth-child(2):hover {
+    background-color: #1E88E5; /* 少し濃いスカイブルー */
+}
+
+/* 3つ目のボタンの色 */
+.additional-buttons button:nth-child(3) {
+    background-color: #66BB6A; /* 鮮やかなライトグリーン */
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30%;
+}
+
+.additional-buttons button:nth-child(3):hover {
+    background-color: #43A047; /* 少し濃いライトグリーン */
+}
+
+.hidden {
+    display: none;
+}
+
+#orderConfirmation {
+    text-align: center;
+    margin-top: 10%; /* 少し上に調整 */
+    padding: 60px;
+    background-color: #5d4037;
+    border-radius: 10px;
+    color: #ffe0b2;
+    font-size: 36px;
+    font-weight: bold; /* 文字を太く */
+}
+
+.allergy-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.allergy-section button {
+    background-color: #ff7043;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold; /* 文字を太く */
+    cursor: pointer;
+}
+
+.allergy-section button:hover {
+    background-color: #ff5722;
+}
+
+/* アレルギー選択画面のスタイル */
+#allergyScreen h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffe0b2;
+}
+
+.allergy-options {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7列のグリッド */
+    grid-template-rows: repeat(4, 1fr); /* 4行のグリッド */
+    gap: 15px;
+    justify-content: center;
+    align-items: center; /* 縦中央寄りに配置 */
+    margin-top: 40px; /* 画面中央寄りに調整 */
+    margin-bottom: 40px; /* 下にも余白を追加 */
+}
+
+/* 検索・戻るボタンを大きくし、中央に配置して暖色に変更 */
+.search-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* ボタン間にスペースを追加 */
+    margin-top: 40px; /* 上部とのスペースを追加 */
+}
+
+.search-buttons button {
+    background-color: #FF6F61; /* モダンなコーラルレッド（暖色） */
+    color: #ffffff; /* 白いテキスト */
+    padding: 20px 50px; /* ボタンをより大きく */
+    border: none;
+    border-radius: 12px; /* 角を少し丸める */
+    font-size: 20px; /* 文字サイズを大きく */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-buttons button:hover {
+    background-color: #E65C53; /* ホバー時に少し濃いコーラルレッド */
+    transform: scale(1.05); /* ホバー時に少し大きく */
+}
+
+.allergy-btn {
+    background-color: #5d4037;
+    color: #ffccbc;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: 120px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    overflow: hidden; /* ボタン内の画像がはみ出さないようにする */
+}
+
+.allergy-btn img {
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain; /* ボタン内に収まるように画像を調整 */
+}
+
+.allergy-btn span {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.allergy-btn.selected {
+    background-color: #ff5722;
+}
+
+.allergy-btn:hover {
+    transform: scale(1.05);
+}
+
+/* アレルギーアイコンを画像の右上に配置し、下線を取り除く */
+.allergy-icons {
+    position: absolute;
+    top: 5px; /* アイコンを画像の上部に配置 */
+    right: 5px; /* アイコンを右側に配置 */
+    display: flex;
+    gap: 3px;
+    z-index: 1; /* アイコンが画像の上に表示されるようにする */
+}
+
+.allergy-icon-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; /* アイコンのサイズを小さく */
+    height: 24px; /* アイコンのサイズを小さく */
+    text-decoration: none; /* 下線を取り除く */
+    font-size: 22px; /* バツ印のサイズを大きく */
+    line-height: 1; /* バツ印の高さを調整 */
+    display: inline-block;
+    vertical-align: middle; /* テキストの高さに合わせる */
+    font-family: Arial, sans-serif; /* 細いバツ印を表示するフォント */
+}
+
+/* カート内のバツ印（×）スタイル */
+.remove-item {
+    margin-left: 10px;
+    color: #ff6347; /* 鮮やかな赤色 */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 22px; /* バツ印のサイズを大きく */
+    line-height: 1; /* バツ印の高さを調整 */
+    display: inline-block;
+    vertical-align: middle; /* テキストの高さに合わせる */
+    font-family: Arial, sans-serif; /* 細いバツ印を表示するフォント */
+}
+
+.remove-item:hover {
+    color: #d9534f; /* ホバー時に少し濃い赤色にする */
+}
