@@ -3,177 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>オーダーシステム</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>トップページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        select {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .link-button {
+            display: block;
+            width: 80%;
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .link-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .admin-link {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .admin-link:hover {
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <div id="order-system" class="order-system">
-        <div id="menuScreen">
-            <header>
-                <h1>メニューをお選びください</h1>
-            </header>
-            <nav class="menu-nav">
-                <button onclick="showMenu('special')" id="limited">期間限定</button>
-                <button onclick="showMenu('salad_pasta')" id="salad_pasta">サラダ・パスタ</button>
-                <button onclick="showMenu('drinks')" id="drinks">ドリンク</button>
-                <button onclick="showMenu('dessert')" id="dessert">デザート</button>
-                <button onclick="showMenu('other')" id="other">その他</button>
-            </nav>
-            <div class="main-content">
-                <section class="menu-section">
-                    <ul id="menuList">
-                        <!-- メニュー項目がここに表示される -->
-                    </ul>
-                </section>
-                <div class="cart">
-                    <h2>カート</h2>
-                    <ul id="cartList">
-                        <!-- カートアイテムがここに表示される -->
-                    </ul>
-                    <div class="cart-footer">
-                        <div class="cart-total">
-                            <span>合計金額:</span> <span id="cartTotal">0円</span>
-                        </div>
-                        <button onclick="submitOrder()">注文を確定する</button>
-                    </div>
-                </div>
-            </div>
-            <div class="additional-buttons">
-                <button onclick="showOrderHistory()">注文履歴</button>
-                <button onclick="callWaiter()">店員呼出</button>
-                <button onclick="requestBill()">会計</button>
-            </div>
-            <div class="allergy-section">
-                <button onclick="showAllergyScreen()">アレルギー検索</button>
-            </div>
-        </div>
-
-        <div id="allergyScreen" class="hidden">
-            <header>
-                <h2>除外するアレルギー</h2>
-            </header>
-            <div class="allergy-options">
-                <button class="allergy-btn" data-allergy="えび">
-                    <img src="allergies/shrimp.png" alt="えび">
-                    えび
-                </button>
-                <button class="allergy-btn" data-allergy="かに">
-                    <img src="allergies/crab.png" alt="かに">
-                    かに
-                </button>
-                <button class="allergy-btn" data-allergy="くるみ">
-                    <img src="allergies/walnut.png" alt="くるみ">
-                    くるみ
-                </button>
-                <button class="allergy-btn" data-allergy="小麦">
-                    <img src="allergies/wheat.png" alt="小麦">
-                    小麦
-                </button>
-                <button class="allergy-btn" data-allergy="そば">
-                    <img src="allergies/soba.png" alt="そば">
-                    そば
-                </button>
-                <button class="allergy-btn" data-allergy="卵">
-                    <img src="allergies/egg.png" alt="卵">
-                    卵
-                </button>
-                <button class="allergy-btn" data-allergy="乳">
-                    <img src="allergies/milk.png" alt="乳">
-                    乳
-                </button>
-                <button class="allergy-btn" data-allergy="落花生">
-                    <img src="allergies/peanut.png" alt="落花生">
-                    落花生
-                </button>
-                <button class="allergy-btn" data-allergy="アーモンド">
-                    <img src="allergies/almond.png" alt="アーモンド">
-                    アーモンド
-                </button>
-                <button class="allergy-btn" data-allergy="あわび">
-                    <img src="allergies/abalone.png" alt="あわび">
-                    あわび
-                </button>
-                <button class="allergy-btn" data-allergy="いか">
-                    <img src="allergies/squid.png" alt="いか">
-                    いか
-                </button>
-                <button class="allergy-btn" data-allergy="いくら">
-                    <img src="allergies/ikura.png" alt="いくら">
-                    いくら
-                </button>
-                <button class="allergy-btn" data-allergy="オレンジ">
-                    <img src="allergies/orange.png" alt="オレンジ">
-                    オレンジ
-                </button>
-                <button class="allergy-btn" data-allergy="カシューナッツ">
-                    <img src="allergies/cashew.png" alt="カシューナッツ">
-                    カシューナッツ
-                </button>
-                <button class="allergy-btn" data-allergy="キウイフルーツ">
-                    <img src="allergies/kiwi.png" alt="キウイフルーツ">
-                    キウイフルーツ
-                </button>
-                <button class="allergy-btn" data-allergy="牛肉">
-                    <img src="allergies/beef.png" alt="牛肉">
-                    牛肉
-                </button>
-                <button class="allergy-btn" data-allergy="ごま">
-                    <img src="allergies/sesame.png" alt="ごま">
-                    ごま
-                </button>
-                <button class="allergy-btn" data-allergy="さけ">
-                    <img src="allergies/salmon.png" alt="さけ">
-                    さけ
-                </button>
-                <button class="allergy-btn" data-allergy="さば">
-                    <img src="allergies/mackerel.png" alt="さば">
-                    さば
-                </button>
-                <button class="allergy-btn" data-allergy="大豆">
-                    <img src="allergies/soy.png" alt="大豆">
-                    大豆
-                </button>
-                <button class="allergy-btn" data-allergy="鶏肉">
-                    <img src="allergies/chicken.png" alt="鶏肉">
-                    鶏肉
-                </button>
-                <button class="allergy-btn" data-allergy="バナナ">
-                    <img src="allergies/banana.png" alt="バナナ">
-                    バナナ
-                </button>
-                <button class="allergy-btn" data-allergy="豚肉">
-                    <img src="allergies/pork.png" alt="豚肉">
-                    豚肉
-                </button>
-                <button class="allergy-btn" data-allergy="まつたけ">
-                    <img src="allergies/matsutake.png" alt="まつたけ">
-                    まつたけ
-                </button>
-                <button class="allergy-btn" data-allergy="もも">
-                    <img src="allergies/peach.png" alt="もも">
-                    もも
-                </button>
-                <button class="allergy-btn" data-allergy="やまいも">
-                    <img src="allergies/yam.png" alt="やまいも">
-                    やまいも
-                </button>
-                <button class="allergy-btn" data-allergy="りんご">
-                    <img src="allergies/apple.png" alt="りんご">
-                    りんご
-                </button>
-                <button class="allergy-btn" data-allergy="ゼラチン">
-                    <img src="allergies/gelatin.png" alt="ゼラチン">
-                    ゼラチン
-                </button>
-            </div>
-            <button onclick="applyAllergyFilter()">検索</button>
-            <button onclick="showMenuScreen()">戻る</button>
-        </div>
-
+    <div class="container">
+        <h1>トップページ</h1>
+        <!-- 卓番号選択 -->
+        <label for="tableNumber">卓番号を選択してください:</label>
+        <select id="tableNumber">
+            <option value="" disabled selected>卓番号を選択</option>
+            <option value="1">卓 1</option>
+            <option value="2">卓 2</option>
+            <option value="3">卓 3</option>
+            <option value="4">卓 4</option>
+            <option value="5">卓 5</option>
+        </select>
+        <!-- メニューを開くボタン -->
+        <a href="#" class="link-button" id="menuOrderButton">メニューを開く</a>
+        <span class="admin-link" id="adminLink">管理者用画面</span>
     </div>
-    <div id="orderConfirmation" class="hidden">
-        <!-- この要素に「ご注文ありがとうございました」が表示されます -->
-    </div>
-<script src="script.js"></script>
+
+    <script>
+        // 初期パスワードを "password" に設定
+        const adminPassword = localStorage.getItem('adminPassword') || 'password';
+
+        // 卓番号を選択した際にリンクに卓番号を渡す
+        document.getElementById('menuOrderButton').addEventListener('click', function(event) {
+            const tableNumber = document.getElementById('tableNumber').value;
+            if (!tableNumber) {
+                alert('卓番号を選択してください。');
+                event.preventDefault();
+            } else {
+                this.href = `order_page.html?table=${tableNumber}`;
+            }
+        });
+
+        // 管理者用画面へのアクセス
+        document.getElementById('adminLink').addEventListener('click', function() {
+            const inputPassword = prompt('管理者パスワードを入力してください:');
+            if (inputPassword === adminPassword) {
+                window.location.href = 'admin.html';
+            } else {
+                alert('パスワードが間違っています。');
+            }
+        });
+    </script>
 </body>
 </html>
+
